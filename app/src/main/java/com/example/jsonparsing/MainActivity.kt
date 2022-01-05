@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         //Stream: In laymen terms, stream is data, the most generic stream is binary representation of data.
         //Input Stream: If you are reading data from a file or any other source, the stream that is used is input stream. In a simpler terms, input stream acts as "a channel to read data".
         //Output Stream: If you want to read and process data from a source (file, etc) you first need to save/store the data, storing data is output stream.
-        //here we'll deal with an Input Stream to load/read data from the Users.json file
+        //here we'll deal with an Input Stream to load/read data from the Users.json file.
         try {
             // Create InputStream object that opens the Users.json file from the assets folder
             val usersJSONFile = assets.open("Users.json")
