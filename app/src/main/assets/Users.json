@@ -9,7 +9,11 @@
       "height": 182,
       "phone": {
         "mobile": "0000000000",
-        "office": "00000000"
+        "office": "00000000",
+        "phoneType": {
+          "brand": "Samsung",
+          "model": "Ultra Note 20"
+        }
       }
     },
     {
@@ -21,7 +25,11 @@
       "height": 183,
       "phone": {
         "mobile": "0000000000",
-        "office": "00000000"
+        "office": "00000000",
+        "phoneType": {
+          "brand": "iPhone",
+          "model": "5S"
+        }
       }
     },
     {
@@ -33,7 +41,11 @@
       "height": 175,
       "phone": {
         "mobile": "0000000000",
-        "office": "00000000"
+        "office": "00000000",
+        "phoneType": {
+          "brand": "Samsung",
+          "model": "Fold 2"
+        }
       }
     },
     {
@@ -45,7 +57,11 @@
       "height": 174,
       "phone": {
         "mobile": "0000000000",
-        "office": "00000000"
+        "office": "00000000",
+        "phoneType": {
+          "brand": "iPhone",
+          "model": "6 Plus"
+        }
       }
     }
   ]

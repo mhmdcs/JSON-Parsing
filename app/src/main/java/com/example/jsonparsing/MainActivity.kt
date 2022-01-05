@@ -3,6 +3,7 @@ package com.example.jsonparsing
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -17,10 +18,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Create instance of users list using the User model data class
-        val usersList: ArrayList<User> = ArrayList()
+        //val usersList: ArrayList<User> = ArrayList() this was only used for the manual method
 
         try {
 
+            //Parse JSON automatically through third-party library GSON
+            val jsonString = getJSONFromAssets()!!
+            val usersArray = Gson().fromJson(jsonString, UsersArray::class.java)
+
+            //Parse JSON manually
+             /*
             //Call getJSONFromAssets method that returns the JSON object in string format from the assets folder
             //and use JSONObject method to convert the string into an actual JSON Object
             val jsonUsersObject = JSONObject(getJSONFromAssets()!!)
@@ -43,31 +50,37 @@ class MainActivity : AppCompatActivity() {
                 val height = user.getInt("height")
 
                 // Create a JSON Object for the current user phone numbers, which is inside a "phones" JSON Object
-                val phone = user.getJSONObject("phone")
+                val phoneJsonObject = user.getJSONObject("phone")
                 // Store the JSON mobile phone data in a variable
-                val mobile = phone.getString("mobile")
+                val mobile = phoneJsonObject.getString("mobile")
                 // Store the JSON office phone data in a variable
-                val office = phone.getString("office")
+                val office = phoneJsonObject.getString("office")
+
+                val phone = Phone(mobile, office)
 
                 // Add all the stored variables to a User object from the model data class, and add that object to the array list.
-                val userData = User(id, name, email, gender, weight, height, mobile, office)
+                val userData = User(id, name, email, gender, weight, height, phone)
 
                 // add the details in the array list
                 usersList.add(userData)
-            }
+
+            }*/
+
+
+
+            // Initialize the Adapter class and pass the context and user list in the parameters.
+            val userRecyclerAdapter = UserRecyclerAdapter(this, usersArray.users)
+
+            // Set the LayoutManager that this RecyclerView will use.
+            users_list_recyclerview.layoutManager = LinearLayoutManager(this)
+
+            // Set the adapter instance to the recyclerview to inflate the items.
+            users_list_recyclerview.adapter = userRecyclerAdapter
+
         } catch (e: JSONException) {
             // Print to the stack trace  if an exception occurs.
             e.printStackTrace()
         }
-
-        // Set the LayoutManager that this RecyclerView will use.
-        users_list_recyclerview.layoutManager = LinearLayoutManager(this)
-
-        // Initialize the Adapter class and pass the context and user list in the parameters.
-        val userRecyclerAdapter = UserRecyclerAdapter(this, usersList)
-
-        // Set the adapter instance to the recyclerview to inflate the items.
-        users_list_recyclerview.adapter = userRecyclerAdapter
 
     }
 
@@ -101,5 +114,4 @@ class MainActivity : AppCompatActivity() {
         }
         return jsonObjectString
     }
-
 }

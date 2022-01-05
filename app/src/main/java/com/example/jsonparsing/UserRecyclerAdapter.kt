@@ -22,6 +22,8 @@ class UserRecyclerAdapter(private val context: Context,private val items: ArrayL
         val tvHeight = view.tv_height
         val tvMobileNumber = view.tv_mobile
         val tvOfficeNumber = view.tv_office_number
+        val tvPhoneBrand = view.tv_phone_brand
+        val tvPhoneModel = view.tv_phone_model
     }
 
     /**
@@ -52,8 +54,11 @@ class UserRecyclerAdapter(private val context: Context,private val items: ArrayL
         holder.tvGender.text = item.gender
         holder.tvWeight.text = item.weight.toString()
         holder.tvHeight.text = item.height.toString()
-        holder.tvMobileNumber.text = item.mobile
-        holder.tvOfficeNumber.text = item.office
+        holder.tvMobileNumber.text = item.phone.mobile
+        holder.tvOfficeNumber.text = item.phone.office
+        holder.tvPhoneBrand.text = item.phone.phoneType.brand
+        holder.tvPhoneModel.text = item.phone.phoneType.model
+
     }
 
     /**
